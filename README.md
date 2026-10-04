@@ -25,7 +25,9 @@ The two owner passwords are set separately in Netlify. The visitor password can 
 
 4. Trigger a new deploy after setting the variables. The Netlify Blobs store is created on first use and keeps Q&A and the visitor-password setting across deploys.
 
-Keep these values private and use different passwords for each role. `SESSION_SECRET` can be generated with a password manager or a cryptographically secure random generator.
+You can import the local `.env` file instead of entering each value separately: choose **Import an .env file** in Netlify's Project configuration → Environment variables, or run `netlify env:import .env` from a linked project with the Netlify CLI. Netlify does not automatically read a checked-in `.env` file during builds; keep `.env` private and out of Git.
+
+Keep these values private and use different passwords for each role. `SESSION_SECRET` can be generated with a password manager or a cryptographically secure random generator. Visitor passwords must be at least 5 characters.
 
 ## Run locally
 

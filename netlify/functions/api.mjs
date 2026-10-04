@@ -80,8 +80,8 @@ async function readSettings() {
   if (!initialPassword) {
     throw new SetupError("Set VISITOR_PASSWORD in the Netlify environment to enable visitor access.");
   }
-  if (initialPassword.length < 6 || initialPassword.length > 128) {
-    throw new SetupError("VISITOR_PASSWORD must be between 6 and 128 characters.");
+  if (initialPassword.length < 5 || initialPassword.length > 128) {
+    throw new SetupError("VISITOR_PASSWORD must be between 5 and 128 characters.");
   }
 
   const salt = randomBytes(16).toString("hex");
@@ -214,8 +214,8 @@ export default async (request) => {
       if (session.role !== "main-owner") return json({ error: "Only the main owner can change the visitor password." }, 403);
       const body = await requestBody(request);
       const password = typeof body?.password === "string" ? body.password.trim() : "";
-      if (password.length < 6 || password.length > 128) {
-        return json({ error: "Choose a visitor password between 6 and 128 characters." }, 400);
+      if (password.length < 5 || password.length > 128) {
+        return json({ error: "Choose a visitor password between 5 and 128 characters." }, 400);
       }
       const settings = await readSettings();
       const visitorSalt = randomBytes(16).toString("hex");
