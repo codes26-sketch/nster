@@ -1,0 +1,13 @@
+{
+  "name": "answer-room",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A password-protected Q&A library deployed on Netlify.",
+  "scripts": {
+    "dev": "netlify dev"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^11.1.1"
+  }
+}

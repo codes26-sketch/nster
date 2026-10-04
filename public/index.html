@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f5ef">
+    <meta name="description" content="A private, thoughtfully organized library of answers and useful code snippets.">
+    <title>Answer Room — a little library of good answers</title>
+    <script>try { const savedTheme = localStorage.getItem('answer-room-theme'); if (savedTheme === 'dark' || savedTheme === 'light') document.documentElement.dataset.theme = savedTheme; } catch { /* Use the default theme. */ }</script>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+
+    <div class="app-shell">
+      <header class="site-header">
+        <a class="brand" href="/" aria-label="Answer Room home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none"><path d="M8 11.5A4.5 4.5 0 0 1 12.5 7h15A4.5 4.5 0 0 1 32 11.5v13a4.5 4.5 0 0 1-4.5 4.5H19l-7 5v-5.3a4.5 4.5 0 0 1-4-4.2v-13Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 16h12M14 21h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </span>
+          <span class="brand-name">answer<span>room</span></span>
+        </a>
+        <div class="header-actions">
+          <button class="icon-button theme-toggle" type="button" aria-label="Switch to dark theme" title="Switch theme">
+            <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.7"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 15.3A8.6 8.6 0 0 1 8.7 3.6 8.7 8.7 0 1 0 20.4 15.3Z"/></svg>
+          </button>
+          <button class="owner-button" id="ownerAccess" type="button" aria-label="Open owner access" title="Owner access">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 10V7.5a4.5 4.5 0 0 1 9 0V10M6.5 10h11a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-11a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z"/><path d="M12 14v3"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="gate-view" id="gateView" aria-labelledby="gateTitle" hidden>
+          <div class="gate-card">
+            <div class="gate-art" aria-hidden="true">
+              <div class="gate-orbit orbit-one"></div><div class="gate-orbit orbit-two"></div>
+              <div class="gate-book"><span></span><span></span><span></span></div>
+              <div class="spark spark-one">✳</div><div class="spark spark-two">✦</div>
+            </div>
+            <p class="eyebrow"><span class="eyebrow-dot"></span> YOUR PRIVATE KNOWLEDGE SPACE</p>
+            <h1 id="gateTitle">Good answers<br><em>live here.</em></h1>
+            <p class="gate-copy">A calm little library of useful answers, thoughtful notes, and code worth keeping.</p>
+            <form id="visitorLogin" class="access-form">
+              <label class="field-label" for="visitorPassword">Visitor password</label>
+              <div class="password-field">
+                <input id="visitorPassword" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required>
+                <button class="reveal-password" type="button" data-reveal="visitorPassword" aria-label="Show password"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.3-6 9.5-6 9.5 6 9.5 6-3.3 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg></button>
+              </div>
+              <p class="form-error" id="visitorError" role="alert" hidden></p>
+              <button class="primary-button unlock-button" type="submit"><span>Open the library</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+            </form>
+            <p class="quiet-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.6 3 8.2 7 10 4-1.8 7-5.4 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg> Your answers are shared privately with invited visitors.</p>
+          </div>
+          <footer class="page-foot"><span>Made for things worth remembering</span><span class="foot-star">✳</span></footer>
+        </section>
+
+        <section class="library-view" id="libraryView" hidden>
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="eyebrow-dot"></span> THE SHARED LIBRARY</p>
+            <h1>A little more<br><em>clarity.</em></h1>
+            <p class="library-intro">Find the answer you need, or take a minute to learn something new.</p>
+          </div>
+
+          <section class="owner-panel" id="ownerPanel" aria-label="Owner controls" hidden>
+            <div class="owner-panel-heading">
+              <div><p class="eyebrow"><span class="eyebrow-dot"></span> <span id="ownerRoleLabel">OWNER SPACE</span></p><h2 id="ownerPanelTitle">Add to the library</h2></div>
+              <button class="text-button signout-button" id="signOut" type="button">Sign out <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5m5 5H3m9-9h6a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3h-6"/></svg></button>
+            </div>
+            <p class="owner-hint" id="ownerHint">Write an answer for the library. Add a code example when it helps.</p>
+            <form id="questionForm" class="question-form">
+              <label class="field-label" for="questionInput">Question</label>
+              <input id="questionInput" name="question" maxlength="280" placeholder="What would someone ask?" required>
+              <label class="field-label" for="answerInput">Answer</label>
+              <textarea id="answerInput" name="answer" rows="4" maxlength="12000" placeholder="Write a clear, helpful answer…" required></textarea>
+              <div class="code-fields">
+                <div class="code-label-row"><label class="field-label" for="codeInput">Code snippet <span>(optional)</span></label><label class="language-label" for="languageInput">Language</label></div>
+                <div class="code-edit-grid"><textarea id="codeInput" name="code" rows="4" maxlength="12000" spellcheck="false" placeholder="Paste a code example here…"></textarea><select id="languageInput" name="language" aria-label="Code language"><option value="text">Plain text</option><option value="javascript">JavaScript</option><option value="typescript">TypeScript</option><option value="python">Python</option><option value="html">HTML</option><option value="css">CSS</option><option value="bash">Bash</option><option value="sql">SQL</option><option value="json">JSON</option><option value="java">Java</option><option value="csharp">C#</option><option value="other">Other</option></select></div>
+              </div>
+              <div class="form-actions"><p class="form-error" id="questionError" role="alert" hidden></p><button class="primary-button add-button" type="submit"><span>Save answer</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m-7-7h14"/></svg></button></div>
+            </form>
+            <section class="password-control" id="visitorPasswordControl" hidden>
+              <div class="password-control-copy"><span class="settings-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m11 12 8-8m-2 0h2v2m-5 1 2 2"/></svg></span><div><h3>Visitor access</h3><p>Change the password guests use to enter.</p></div></div>
+              <form id="changeVisitorPassword" class="password-change-form"><div><label class="field-label" for="newVisitorPassword">New password</label><input id="newVisitorPassword" type="password" minlength="6" maxlength="128" autocomplete="new-password" placeholder="At least 6 characters" required></div><button class="secondary-button" type="submit"><span>Update password</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><p class="form-error" id="passwordError" role="alert" hidden></p></form>
+            </section>
+          </section>
+
+          <section class="library-content" aria-labelledby="libraryHeading">
+            <div class="library-toolbar">
+              <div class="library-heading"><h2 id="libraryHeading">The answer shelf</h2><span class="count-pill" id="questionCount">0</span></div>
+              <label class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><input id="searchInput" type="search" placeholder="Search answers…" aria-label="Search answers"><kbd>/</kbd></label>
+            </div>
+            <div class="question-list" id="questionList" aria-live="polite"></div>
+            <div class="empty-state" id="emptyState" hidden><span class="empty-icon" aria-hidden="true">✳</span><h3 id="emptyTitle">A fresh page</h3><p id="emptyCopy">There are no answers here yet. Check back soon.</p></div>
+          </section>
+          <footer class="library-foot"><span><span class="foot-star">✳</span> A small space for good questions</span><span id="footerAccess">Private library</span></footer>
+        </section>
+      </main>
+    </div>
+
+    <dialog class="owner-dialog" id="ownerDialog" aria-labelledby="ownerDialogTitle">
+      <form method="dialog"><button class="dialog-close icon-button" aria-label="Close owner access"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></form>
+      <div class="dialog-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.5 10V7.5a4.5 4.5 0 0 1 9 0V10M6.5 10h11a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-11a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2Z"/><path d="M12 14v3"/></svg></div>
+      <p class="eyebrow"><span class="eyebrow-dot"></span> JUST FOR THE OWNERS</p>
+      <h2 id="ownerDialogTitle">Owner access</h2>
+      <p class="dialog-copy">Sign in to add answers or manage visitor access.</p>
+      <form id="ownerLogin" class="access-form owner-login-form">
+        <label class="field-label" for="ownerPassword">Owner password</label>
+        <div class="password-field"><input id="ownerPassword" type="password" autocomplete="current-password" placeholder="Enter your owner password" required><button class="reveal-password" type="button" data-reveal="ownerPassword" aria-label="Show password"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.3-6 9.5-6 9.5 6 9.5 6-3.3 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg></button></div>
+        <p class="form-error" id="ownerError" role="alert" hidden></p>
+        <button class="primary-button unlock-button" type="submit"><span>Continue as owner</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+      </form>
+      <p class="owner-roles-note"><strong>Main owner</strong> can update visitor access. <strong>Content owner</strong> can add answers.</p>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
